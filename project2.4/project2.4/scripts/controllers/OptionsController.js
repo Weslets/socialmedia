@@ -124,8 +124,8 @@ angular.module('Options')
             $location.replace();
         };
 
-        $scope.redirectPrivacy = function (e) {
-            $location.path("/Privacy");
+        $scope.searchBackup = function (e) {
+            $location.path("/SearchResult");
             $location.replace();
         };
 

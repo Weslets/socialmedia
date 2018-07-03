@@ -1,5 +1,5 @@
 ﻿angular.module('Feed')
-    .controller('FeedController', function ($scope, $route, $location, $timeout, UriBuilder, $rootScope, httpRequestService) {
+    .controller('FeedController', function ($scope, $route, $location, $timeout, UriBuilder, $rootScope, httpRequestService, Upload) {
         $scope.NewComment = [];
         $scope.RespectGiven = [];
 
@@ -10,10 +10,50 @@
             console.log("Ging iets fout bij het ophalen van het account");
         });
 
+        $scope.uploadFiles = function (file, errFiles) {
+            $scope.f = file;
+            $scope.errFile = errFiles && errFiles[0];
+            if (file) {
+                file.upload = Upload.upload({
+                    url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+                    data: { file: file }
+                });
+                file.upload.then(function (response) {
+                    $timeout(function () {
+                        file.result = response.data;
+                    });
+                }, function (response) {
+                    if (response.status > 0)
+                        $scope.errorMsg = response.status + ': ' + response.data;
+                }, function (evt) {
+                    file.progress = Math.min(100, parseInt(100.0 *
+                        evt.loaded / evt.total));
+                });
+                //file.upload.then(function (response) {
+                //    $timeout(function () {
+                //        file.result = response.data;
+
+                //    });
+                //});
+            }
+        }
+
+        $scope.checkVideo = function ()
+        {
+            for (i = 0; i < $scope.Feed.length; i++) {
+                if ($scope.Feed[i].Feed.VideoUrl == undefined) {
+                    $scope.Feed[i].isvideo = false;
+                } else {
+                    $scope.Feed[i].isvideo = true;
+                }
+            }
+        }
+
         
         var url = UriBuilder.BuildUrl("Feed", { 'id': null });
         httpRequestService.getRequest(url,function success (response) {
             $scope.Feed = response.data;
+            $scope.checkVideo();
         }, function fail (response) {
             console.log("Ging iets fout bij het ophalen van de Feed");
         });
@@ -24,19 +64,32 @@
             //TODO Upload image or video to webserver
 
             var feedtext = $scope.NewPostText;
-            var url = UriBuilder.BuildUrl("Feed", { 'Text': feedtext, 'imageurl': "", 'videourl': "" });
+            
+            if ($scope.NewPostPhoto != null) {
+                var feedphoto = 'Images/' + $scope.NewPostPhoto.name;
+            } else {
+                var feedphoto = "";
+            }
+            if ($scope.NewPostVideo != null) {
+                var feedVideo = 'Images/' + $scope.NewPostVideo.name;
+            } else {
+                var feedVideo = "";
+            }
+            var url = UriBuilder.BuildUrl("Feed", { 'Text': feedtext, 'imageurl': feedphoto, 'videourl': feedVideo });
             httpRequestService.PostRequest(url, null, function success(response) {
                 var url = UriBuilder.BuildUrl("Feed", { 'id': null });
                 httpRequestService.getRequest(url, function success(response) {
                     $scope.Feed = response.data;
+                    $scope.checkVideo();
                 }, function fail(response) {
                     console.log("Ging iets fout bij het ophalen van de Feed");
                 });
             }, function fail(response)
             {
-                console.log("niet helemaal");
+                console.log("niet belemaal");
             });
         }
+
 
         $scope.PostComment = function (FeedId, index)
         {
@@ -46,6 +99,7 @@
                 var url = UriBuilder.BuildUrl("Feed", { 'id': null });
                 httpRequestService.getRequest(url,function success (response) {
                     $scope.Feed = response.data;
+                    $scope.checkVideo();
                 }, function fail (response) {
                     console.log("Ging iets fout bij het ophalen van de Feed");
                 });
@@ -70,6 +124,7 @@
                 var url = UriBuilder.BuildUrl("Feed", { 'id': null });
                 httpRequestService.getRequest(url, function success(response) {
                     $scope.Feed = response.data;
+                    $scope.checkVideo();
                 }, function fail(response) {
                     console.log("Ging iets fout bij het ophalen van de Feed");
                 });
@@ -106,8 +161,9 @@
             $location.replace();
         };
 
-        $scope.redirectPrivacy = function (e) {
-            $location.path("/Privacy");
+        $scope.searchBackup = function (e) {
+            console.log("test")
+            $location.path("/SearchResult");
             $location.replace();
         };
 

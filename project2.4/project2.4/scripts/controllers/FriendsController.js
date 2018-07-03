@@ -7,6 +7,7 @@
         httpRequestService.getRequest(url, function success(response) {
             $scope.ProfileInfo = response.data;
             $scope.places = [response.data.Hometown];
+            console.log($scope.places);
             var url = UriBuilder.BuildUrl("Feed", { 'id': null });
             httpRequestService.getRequest(url, function success(response) {
                 $scope.Feed = response.data;
@@ -42,8 +43,8 @@
             $location.replace();
         };
 
-        $scope.redirectPrivacy = function (e) {
-            $location.path("/Privacy");
+        $scope.searchBackup = function (e) {
+            $location.path("/SearchResult");
             $location.replace();
         };
 

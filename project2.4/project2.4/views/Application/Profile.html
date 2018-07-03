@@ -137,30 +137,6 @@
                 </ul>
             </div>
             <div id="infoContainer">
-                <div id="Header"><img src="Images\icons\network.png" id="headerIcon"><center>NETWORK</center></div>
-                <div class="friendThumbnail">HOOFD</div>
-                <div class="friendThumbnail">HOOFD</div>
-                <div class="friendThumbnail">HOOFD</div>
-                <div class="friendThumbnail">HOOFD</div>
-                <div class="friendThumbnail">HOOFD</div>
-                <div class="friendThumbnail">HOOFD</div>
-                <div class="friendThumbnail">HOOFD</div>
-                <div class="friendThumbnail">HOOFD</div>
-                <div ng-click="redirectFriends()" class="friendThumbnail">Show more friends</div>
-            </div>
-        </div>
-
-
-        <!--Rechts-->
-        <div class="infoBoxes-right">
-            <div id="infoContainer">
-                <div id="Header"><img src="Images\icons\blog.png" id="headerIcon"><center>BLOGS</center></div>
-                <div class="blogItem">Gedicht: Waarom heb je mij verlaten?</div>
-                <div class="blogItem">Mijn eerste (en hopelijk laatste!) dag op het Hanze</div>
-                <div class="blogItem">Hoe ik aan die enorme anuspijn van vanmiddag ben gekomen</div>
-                <div class="blogItem">Vandaag werd Ahmed boos in de klas!!</div>
-            </div>
-            <div id="infoContainer">
                 <div id="Header"><img src="Images\icons\photos.png" id="headerIcon"><center>RECENT PHOTO'S</center></div>
                 <div class="pictureThumbnail">Dit is een foto!</div>
                 <div class="pictureThumbnail">Dit is een foto!</div>
@@ -171,6 +147,42 @@
                 <div class="pictureThumbnail">Dit is een foto!</div>
                 <div class="pictureThumbnail">Dit is een foto!</div>
                 <div class="pictureThumbnail">Dit is een foto!</div>
+            </div>
+            
+        </div>
+
+
+        <!--Rechts-->
+        <div class="infoBoxes-right">
+            <div id="infoContainer">
+                <div id="Header"><img src="Images\icons\blog.png" id="headerIcon"><center>Friend requests</center></div>
+                
+                <div class="request" ng-repeat="request in FriendRequests">
+                    <div class="">{{request.Photo}}</div>
+                    <div class="requestName">{{request.name}}</div>
+                    <div class="requestAccept" ng-click="accept"></div>
+                    <div class="requestDecline" ng-click="decline"></div>
+                </div>
+             
+                
+                <!--<div class="blogItem">
+           <img />Profielfoto
+            Naam wants to be your frend
+            Vinkje
+            Kruisje
+    </div>-->
+            </div>
+            <div id="infoContainer">
+                <div id="Header"><img src="Images\icons\network.png" id="headerIcon"><center>NETWORK</center></div>
+                <div class="friendThumbnail">HOOFD</div>
+                <div class="friendThumbnail">HOOFD</div>
+                <div class="friendThumbnail">HOOFD</div>
+                <div class="friendThumbnail">HOOFD</div>
+                <div class="friendThumbnail">HOOFD</div>
+                <div class="friendThumbnail">HOOFD</div>
+                <div class="friendThumbnail">HOOFD</div>
+                <div class="friendThumbnail">HOOFD</div>
+                <div ng-click="redirectFriends()" class="friendThumbnail">Show more friends</div>
             </div>
         </div>
     </div>

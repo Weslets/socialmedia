@@ -1,0 +1,72 @@
+﻿<div id="menu">
+    <div ng-click="themeChange()" class="menuitem"> <img id="logoBig" src="Images\logo-minimal.png" class="menuLogo"> <img id="logoSmall" src="../../images/Speech-simple.png" class="menuLogo" /></div>
+    <div ng-click="redirectFeed()" class="selectedItem"> <img src="Images\feedicon.png" class="menuIcon">Feed</div>
+    <div ng-click="redirectOptions()" class="menufiller"></div>
+    <textarea class="searchBar" placeholder="Search (Names, jobs, gender)" ></textarea><div><img src="../../images/searchIcon.png" ng-click="searchBackup()" class="menuIcon"/></div>
+    <!--<div ng-click="redirectOptions()" class="menufiller"></div>-->
+    <div ng-click="redirectProfile(Account.Id)" class="menuitem"><img src="Images\profileicon.png" class="menuIcon" />Profile</div>
+    <div ng-click="redirectOptions()" class="menuitem"><img src="Images\settingsicon.png" class="menuIcon" /> Options</div>
+    <div ng-click="redirectLogin()" class="menuitem"><img src="../../images/icons/logout.png" class="menuIcon" /> Logout</div>
+</div>
+
+<div class="UserPanelContainer">
+    <div id="Header"> <center>{{Account.FirstName}} {{Account.LastName}}</center></div>
+    <img src="{{Account.ProfilePictureUrl}}" id="panelNamePic">
+    <div id="friendCount">You have <br /><b>98 Friends</b></div>
+    <div id="onlineStatus">
+        Shown as:<img src="Images\dropdownArrow.png" id="dropdownIconOnline">  <br />
+        <img src="Images\userOnline.png" id="onlineStatusIcon"><b> Online</b>
+    </div>
+    <div id="panelInformation">
+        <div class="WeatherWidget">
+            <center>
+                <img src="Images\weatherSunny.png" id="weatherIcon">
+                <p>You are currently in <br> <b>Groningen</b></p>
+                <p id="Temperature"> 28ºC</p>
+            </center>
+        </div>
+        <div class="notificationsWidget">
+            <center>
+                <p><b>You have 5 new notifications</b></p>
+                <p>3 friends replied to your 'Holiday in Spain' album</p>
+                <p>Jan de Woert wants to be your friend</p>
+                <p>You have been invited to the event: ''Wedding Party''</p>
+            </center>
+        </div>
+        <div class="feedWidget">
+            <center>
+                <div class="feedHeader">FEED UPDATES</div>
+                <div class="feedupdate"><div class="timestamp">4 minutes ago </div> Arjen Bovee made a new post!<img src="Images\seenIcon.png" class="seen"><img src="Images\removeIcon.png" class="remove"></div>
+                <div class="feedupdate"><div class="timestamp">8 minutes ago </div>Miguel Grant posted a picture of the White House<img src="Images\seenIcon.png" class="seen"><img src="Images\removeIcon.png" class="remove"></div>
+                <div class="feedupdate"><div class="timestamp">15 minutes ago </div>Marnick Scholten posted an album called: ''2-weeks at Ibiza''<img src="Images\seenIcon.png" class="seen"><img src="Images\removeIcon.png" class="remove"></div>
+                <div class="feedupdate"><div class="timestamp">23 minutes ago </div>Wesley de Waart made a new post!<img src="Images\seenIcon.png" class="seen"><img src="Images\removeIcon.png" class="remove"></div>
+                <div class="feedupdate"><div class="timestamp">45 minutes ago </div>Jan de Woert added a video called: "I created a robot that scratches the dog for you!"<img src="Images\seenIcon.png" class="seen"><img src="Images\removeIcon.png" class="remove"></div>
+                <div class="feedupdate"><div class="timestamp">51 minutes ago </div>Arjen Bovee added a picture called: "My favourite Hanze teacher"<img src="Images\seenIcon.png" class="seen"><img src="Images\removeIcon.png" class="remove"></div>
+                <div class="feedupdate"><div class="timestamp">1 hour ago </div>Wesley just made a post!<img src="Images\seenIcon.png" class="seen"><img src="Images\removeIcon.png" class="remove"></div>
+            </center>
+        </div>
+    </div>
+</div>
+
+<div id="settings">
+    <div id="Header"><center>Search Results</center></div>
+    <h1>1 Result found</h1>
+
+    <div class="postcontainer-feed">
+        <img src="../../images/freek.jpg" class="user"><br /><p class="username">Freek Vonk </p>
+        <div id="searchContainer">
+                <div class="motto">De Geit is gemolken</div>
+                <ul id="userInfoItem">
+                    <li class="description"><img src="Images\icons\jobicon.png" class="profileInfoIcon">Works at <b>Work</b> </li>
+                    <li class="description"><img src="Images\icons\schoolicon.png" class="profileInfoIcon">Studys <b>School</b> </li>
+                    <li class="description"><img src="Images\icons\homeicon.png" class="profileInfoIcon">Lives in <b>Hometown</b> </li>
+                    <li class="description"><img src="Images\icons\relationshipIcon.png" class="profileInfoIcon"><b>Relation</b> </li>
+                    <li class="description"><img src="Images\icons\genderIcon.png" class="profileInfoIcon"><b>Gender</b> </li>
+                    <li class="description"><img src="Images\icons\birthday.png" class="profileInfoIcon" />Born at <b>BirthDate</b></li>
+                    <li class="description"><img src="Images\icons\memberIcon.png" class="profileInfoIcon">Member since <b>MemberSince</b> </li>
+                </ul>
+            </div>
+    </div>
+
+</div>
+   
