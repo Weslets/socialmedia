@@ -221,3 +221,13 @@ textarea {
     ::-webkit-scrollbar-thumb:hover {
         background-color: #909090;
     }
+
+
+#searchContainer{
+    margin-top:7%;
+    position: relative;
+    margin-bottom: 30px;
+    display: block;
+    width: calc(100%);
+    height: auto;
+}

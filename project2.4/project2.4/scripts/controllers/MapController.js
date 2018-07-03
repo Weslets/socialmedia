@@ -1,7 +1,7 @@
 ﻿angular.module('mapApp')
     .controller('MapController', function ($scope, $route, $location, $timeout, UriBuilder, httpRequestService) {
 
-
+        
         //Getting ProfileInfo
         var url = UriBuilder.BuildUrl("ProfileInfo", { 'id': null });
         httpRequestService.getRequest(url, function success(response) {
@@ -16,7 +16,9 @@
         geocoder = new google.maps.Geocoder();
         function getCoordinates(address) {
             geocoder.geocode({ address: address }, function (results, status) {
+                console.log(address);
                 coords_obj = results[0].geometry.bounds;
+                console.log("Hier " + coords_obj);
                 coordinates = [coords_obj.b.f, coords_obj.f.f];
                 var latT = (coords_obj.f.f + coords_obj.f.b)/2;
                 var longT = (coords_obj.b.f + coords_obj.b.b)/2;
@@ -43,8 +45,7 @@
                         long: longT
                     },
                     {
-                        place: 'User2',
-                        desc: 'En user2',
+                        place: + 'User2',
                         lat: latT,
                         long: longT
                     },
@@ -89,7 +90,8 @@
             //return coordinates;
         };
 
-        getCoordinates(plaats);
+        
+        getCoordinates('Leeuwarden');
 
         var plaats = 'Groningen'
         var mapOptions = {

@@ -2,11 +2,12 @@
     <div ng-click="themeChange()" class="menuitem"> <img id="logoBig" src="Images\logo-minimal.png" class="menuLogo"> <img id="logoSmall" src="../../images/Speech-simple.png" class="menuLogo" /></div>
     <div ng-click="redirectFeed()" class="selectedItem"> <img src="Images\feedicon.png" class="menuIcon">Feed</div>
     <div ng-click="redirectOptions()" class="menufiller"></div>
+    <!--<textarea class="searchBar" placeholder="Search (Names, jobs, gender)" ng-mouseleave="searchBackup()"></textarea>-->
     <textarea class="searchBar" placeholder="Search (Names, jobs, gender)"></textarea>
-    <div ng-click="redirectOptions()" class="menufiller"></div>
+    <!--<div ng-click="redirectOptions()" class="menufiller"></div>-->
     <div ng-click="redirectProfile(Account.Id)" class="menuitem"><img src="Images\profileicon.png" class="menuIcon" />Profile</div>
     <div ng-click="redirectOptions()" class="menuitem"><img src="Images\settingsicon.png" class="menuIcon" /> Options</div>
-    <div ng-click="redirectLogin()" class="menuitem"><img src="../../images/icons/logout.png" class="menuIcon"/> Logout</div>
+    <div ng-click="redirectLogin()" class="menuitem"><img src="../../images/icons/logout.png" class="menuIcon" /> Logout</div>
 </div>
 
 
@@ -56,21 +57,30 @@
         <b class="createposttext"> Create Post</b><br>
         <textarea id="postText" placeholder="Please enter your post here" ng-model="NewPostText"></textarea><br />
         <div id="buttons">
-            <input type="file" name="addImage" id="addImage" accept="image/*" />
+            <!--<input type="file" name="addImage" id="addImage" accept="image/*" />
+        <label class="addMedia" for="addImage"><img src="Images\imageicon.png" class="postIcon">Add Image</label>-->
+
+            <input type="file" name="addImage" id="addImage" ngf-select="uploadFiles($file, $invalidFiles)" ng-model="NewPostPhoto" accept="image/*">
             <label class="addMedia" for="addImage"><img src="Images\imageicon.png" class="postIcon">Add Image</label>
 
-            <input type="file" name="addVideo" id="addVideo" accept="video/*" />
+            <input type="file" name="addVideo" id="addVideo" ngf-select="uploadFiles($file, $invalidFiles)" ng-model="NewPostVideo" accept="video/*" />
             <label class="addMedia" for="addVideo"><img src="Images\videoicon.png" class="postIcon">Add Video</label>
 
+            <label class="addMedia">File selected: {{f.name}}  {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}</label>
             <button id="CreatePublishButton" ng-click="PostFeed()"><img src="Images\sendicon.png" class="postIcon">&nbsp; Publish</button>
         </div>
 
     </div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    
     <div class="postcontainer-feed" ng-repeat="item in Feed track by $index">
         <img src="{{item.Creator.ProfilePictureUrl}}" ng-click="redirectProfile(item.Creator.Id)" class="user"><br /><p class="username">{{item.Creator.FirstName}} {{item.Creator.LastName}} </p>
         <div class="post">
             <p class="posttext">
                 {{item.Feed.Text}}
+                <img class="postedphoto" src="{{item.Feed.ImageUrl}}" />
+                <video class="postedPhoto" controls ng-show="item.isvideo">
+                    <source src="{{item.Feed.VideoUrl}}" type="video/mp4">
+                </video>
             </p>
             <div class="postFooter">
                 <button class=" postFooterButton" ng-click="GiveRespect(item.Feed.Id, $index)"><img src="Images\respect.png" class="postFooterImages"></button>

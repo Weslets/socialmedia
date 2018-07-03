@@ -1,4 +1,4 @@
-var app = angular.module('doeIets', ['ngRoute', 'Token', 'httpRequests', 'Login', 'Register', 'Feed', 'Profile', 'Options', 'Privacy', 'Friends', 'mapApp' ,'ngFileUpload']);
+var app = angular.module('doeIets', ['ngRoute', 'Token', 'httpRequests', 'Login', 'Register', 'Feed', 'Profile', 'Options', 'SearchResult', 'Friends', 'mapApp' ,'ngFileUpload']);
 
 
 
@@ -29,10 +29,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/Application/Options.html',
             controller: 'OptionsController',
         })
-        .when('/Privacy', {
-            //Privacy
-            templateUrl: 'views/Application/Privacy.html',
-            controller: 'PrivacyController',
+        .when('/SearchResult', {
+            //SearchResult
+            templateUrl: 'views/Application/SearchResult.html',
+            controller: 'SearchResultController',
         })
         .when('/Friends', {
             //Friends

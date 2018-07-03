@@ -27,12 +27,24 @@ angular.module('Profile')
             });
         }, function fail(response) {
             console.log("Ging iets fout bij het ophalen van het Profile");
-        });
+            });
+
+        var url = UriBuilder.BuildUrl("FriendRequest");
+        httpRequestService.getRequest(url, function success(response) {
+            $scope.friendRequests = response.data;
+            
+        }, function fail(response) {
+            console.log("Ging iets fout bij het ophalen van het Profile");
+            });
+
+
+
+        
 
         //Redirects
-        $scope.profilePosts = false;
+        $scope.profilePosts = true;
         $scope.profilePhotos = false;
-        $scope.profileNotes = true;
+        $scope.profileNotes = false;
         $scope.profileAbout = false;
 
         $scope.redirectFeed = function (e) {
@@ -52,8 +64,8 @@ angular.module('Profile')
             $location.replace();
         };
 
-        $scope.redirectPrivacy = function (e) {
-            $location.path("/Privacy");
+        $scope.searchBackup = function (e) {
+            $location.path("/SearchResult");
             $location.replace();
         };
 
