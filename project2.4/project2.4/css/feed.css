@@ -157,11 +157,9 @@
 
 
 .postedphoto {
-    float: right;
     margin-top: 2%;
     margin-right: 37%;
     height: 300px;
-    /*border: 1px solid black;*/
 }
 
 .postcontainer, .postcontainer-feed, .postcontainer-profile {

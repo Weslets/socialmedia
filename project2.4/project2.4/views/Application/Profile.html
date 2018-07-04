@@ -87,26 +87,12 @@
                     <div class="friendThumbnail">HOOFD</div>
                     <div ng-click="redirectFriends()" class="friendThumbnail">Show more friends</div>
                 </div>
-               
-
-    
-    
-   
-                <!--
-    foreach friend{
-        <div class="friendThumbnail">
-            Profile picture
-            Naam
-        </div>
-    }
-    -->
             </div>
         </div>
 
         <div id="gotPosts-profile" ng-show="profileAbout">
             <div class="postcontainer-profile">
                 <ul id="userInfoItem">
-                    
                     <li class="description"><img src="Images\aboutIcon.png" class="profileInfoIcon" /> {{ProfileInfo.AboutMe}}</li>
                     <li class="description"><img src="Images\icons\jobicon.png" class="profileInfoIcon">Works at <b>{{ProfileInfo.Work}}</b> </li>
                     <li class="description"><img src="Images\icons\schoolicon.png" class="profileInfoIcon">Studys <b>{{ProfileInfo.School}}</b> </li>
@@ -116,7 +102,6 @@
                     <li class="description"><img src="Images\icons\birthday.png" class="profileInfoIcon" />Born at <b>{{ProfileInfo.BirthDate | date:'dd-MM-yyyy'}}</b></li>
                     <li class="description"><img src="Images\icons\memberIcon.png" class="profileInfoIcon">Member since <b>{{ProfileInfo.MemberSince | date:'dd-M-yyyy'}}</b> </li>
                 </ul>
-
             </div>
         </div>
 
@@ -126,6 +111,7 @@
             <div id="infoContainer">
                 <div id="Header"><img src="Images\icons\aboutme.png" id="headerIcon"><center>ABOUT ME</center></div>
                 <div class="motto">{{ProfileInfo.Motto}}</div>
+                <div ng-show="isOther"><button class="" ng-click="">Send Friend Request</button></div>
                 <ul id="userInfoItem">
                     <li class="description"><img src="Images\icons\jobicon.png" class="profileInfoIcon">Works at <b>{{ProfileInfo.Work}}</b> </li>
                     <li class="description"><img src="Images\icons\schoolicon.png" class="profileInfoIcon">Studys <b>{{ProfileInfo.School}}</b> </li>

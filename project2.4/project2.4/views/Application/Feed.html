@@ -1,11 +1,10 @@
 <div id="menu">
     <div ng-click="themeChange()" class="menuitem"> <img id="logoBig" src="Images\logo-minimal.png" class="menuLogo"> <img id="logoSmall" src="../../images/Speech-simple.png" class="menuLogo" /></div>
     <div ng-click="redirectFeed()" class="selectedItem"> <img src="Images\feedicon.png" class="menuIcon">Feed</div>
-    <div ng-click="redirectOptions()" class="menufiller"></div>
-    <!--<textarea class="searchBar" placeholder="Search (Names, jobs, gender)" ng-mouseleave="searchBackup()"></textarea>-->
-    <textarea class="searchBar" placeholder="Search (Names, jobs, gender)"></textarea>
-    <!--<div ng-click="redirectOptions()" class="menufiller"></div>-->
-    <div ng-click="redirectProfile(Account.Id)" class="menuitem"><img src="Images\profileicon.png" class="menuIcon" />Profile</div>
+    <div class="menufiller"></div>
+    <textarea class="searchBar" placeholder="Search (Names, jobs, gender)"></textarea> 
+    <div class="menufiller"></div>
+    <div ng-click="redirectProfile(Account.Id, Account.Id)" class="menuitem"><img src="Images\profileicon.png" class="menuIcon" />Profile</div>
     <div ng-click="redirectOptions()" class="menuitem"><img src="Images\settingsicon.png" class="menuIcon" /> Options</div>
     <div ng-click="redirectLogin()" class="menuitem"><img src="../../images/icons/logout.png" class="menuIcon" /> Logout</div>
 </div>
@@ -57,9 +56,6 @@
         <b class="createposttext"> Create Post</b><br>
         <textarea id="postText" placeholder="Please enter your post here" ng-model="NewPostText"></textarea><br />
         <div id="buttons">
-            <!--<input type="file" name="addImage" id="addImage" accept="image/*" />
-        <label class="addMedia" for="addImage"><img src="Images\imageicon.png" class="postIcon">Add Image</label>-->
-
             <input type="file" name="addImage" id="addImage" ngf-select="uploadFiles($file, $invalidFiles)" ng-model="NewPostPhoto" accept="image/*">
             <label class="addMedia" for="addImage"><img src="Images\imageicon.png" class="postIcon">Add Image</label>
 
@@ -73,10 +69,10 @@
     </div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     
     <div class="postcontainer-feed" ng-repeat="item in Feed track by $index">
-        <img src="{{item.Creator.ProfilePictureUrl}}" ng-click="redirectProfile(item.Creator.Id)" class="user"><br /><p class="username">{{item.Creator.FirstName}} {{item.Creator.LastName}} </p>
+        <img src="{{item.Creator.ProfilePictureUrl}}" ng-click="redirectProfile(item.Creator.Id, Account.Id)" class="user"><br /><p class="username">{{item.Creator.FirstName}} {{item.Creator.LastName}} </p>
         <div class="post">
             <p class="posttext">
-                {{item.Feed.Text}}
+                <p class="posttext">{{item.Feed.Text}}</p>                
                 <img class="postedphoto" src="{{item.Feed.ImageUrl}}" />
                 <video class="postedPhoto" controls ng-show="item.isvideo">
                     <source src="{{item.Feed.VideoUrl}}" type="video/mp4">
@@ -94,7 +90,7 @@
             <!-- COMMENT -->
             <div class="profileName"> {{comment.FirstName}} {{comment.LastName}}</div>
             <div class="commentText"> {{comment.CommentText}} </div>
-            <img src="{{comment.ProfilePicUrl}}" ng-click="redirectProfile(comment.UserId)" class="commentuser">
+            <img src="{{comment.ProfilePicUrl}}" ng-click="redirectProfile(comment.UserId, Account.Id)" class="commentuser">
         </div>
 
         <div class="placecomment-containter ">

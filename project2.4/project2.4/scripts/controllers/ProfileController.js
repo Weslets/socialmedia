@@ -10,12 +10,18 @@ angular.module('Profile')
 
         //Getting ProfileInfo and Feed 
         var profileId = $rootScope.UsId;
+        var userId = $rootScope.User;
         if (profileId == null) {
             //Bij refresh moet hier id van ingelogde gebruiker komen te staan
             //profileId = 'Id'
             console.log("If " + profileId);
         }
-        //console.log("Klopt deze?" + profileId);
+
+        $scope.isOther = false;
+        if (profileId != userId) {
+            $scope.isOther = true;
+        }
+        
         var url = UriBuilder.BuildUrl("ProfileInfo", { 'id': profileId });
         httpRequestService.getRequest(url, function success(response) {
             $scope.ProfileInfo = response.data;
@@ -29,6 +35,8 @@ angular.module('Profile')
             console.log("Ging iets fout bij het ophalen van het Profile");
             });
 
+
+        //Friend Requests
         var url = UriBuilder.BuildUrl("FriendRequest");
         httpRequestService.getRequest(url, function success(response) {
             $scope.friendRequests = response.data;
@@ -36,8 +44,6 @@ angular.module('Profile')
         }, function fail(response) {
             console.log("Ging iets fout bij het ophalen van het Profile");
             });
-
-
 
         
 
@@ -106,5 +112,4 @@ angular.module('Profile')
             $scope.profileNotes = false;
             $scope.profileAbout = true;
         }
-
     });

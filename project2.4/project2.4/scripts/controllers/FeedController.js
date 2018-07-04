@@ -63,8 +63,11 @@
         {
             //TODO Upload image or video to webserver
 
-            var feedtext = $scope.NewPostText;
-            
+            if ($scope.NewPostText != null) {
+                var feedtext = $scope.NewPostText;
+            } else {
+                var feedtext = "No text";
+            }
             if ($scope.NewPostPhoto != null) {
                 var feedphoto = 'Images/' + $scope.NewPostPhoto.name;
             } else {
@@ -149,9 +152,11 @@
             $location.replace();
         };
 
-        $scope.redirectProfile = function (passId) {
+        $scope.redirectProfile = function (passId, inlog) {
             console.log("Deze:" + passId);
+            console.log("Deze2: " + inlog);
             $rootScope.UsId = passId;
+            $rootScope.User = inlog;
             $location.path("/Profile");
             $location.replace();
         };
