@@ -119,14 +119,9 @@
 }
 
 .requestPicture {
-    width: 30%;
-    height: 75%;
-    margin-left: 5%;
-    margin-top: 5%;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    border: 1px solid black;
+    margin-left: 18%;
+    margin-top: 3%;
+    width: 15%;
     float: left;
 }
 

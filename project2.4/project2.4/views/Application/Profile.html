@@ -144,7 +144,7 @@
             <div id="infoContainer">
                 <div id="Header"><img src="Images\icons\aboutme.png" id="headerIcon"><center>ABOUT ME</center></div>
                 <div class="motto">{{ProfileInfo.Motto}}</div>
-                <div ng-show="isOther"><button class="" ng-click="">Send Friend Request</button></div>
+                <div ng-show="isOther"><button class="" ng-click="addFriend(ProfileInfo.Id)">Send Friend Request</button></div>
                 <ul id="userInfoItem">
                     <li class="description"><img src="Images\icons\jobicon.png" class="profileInfoIcon">Works at <b>{{ProfileInfo.Work}}</b> </li>
                     <li class="description"><img src="Images\icons\schoolicon.png" class="profileInfoIcon">Studys <b>{{ProfileInfo.School}}</b> </li>
@@ -177,13 +177,13 @@
             <!--Friend Request-->
             <div id="infoContainer">
                 <div id="Header"><img src="Images\icons\blog.png" id="headerIcon"><center>Friend requests</center></div>
-                <div class="request" ng-repeat="request in FriendRequests">
-                    <div class="">{{request.Photo}}</div>
-                    <div class="requestName">{{request.name}}</div>
-                    <div class="requestAccept" ng-click="accept"></div>
-                    <div class="requestDecline" ng-click="decline"></div>
+                <div class="request" ng-repeat="request in friendRequests">
+                    <img class="requestPicture" src="{{request.ProfilePictureUrl}}" />
+                    <div class="requestName">{{request.FirstName}} {{request.LastName}}</div>
+                    <div class="requestAccept" ng-click="checkRequest(request.Id,true)"></div>
+                    <div class="requestDecline" ng-click="checkRequest(request.Id, false)"></div>
                 </div>
-            </div>
+                </div>
             <!--Network-->
             <div id="infoContainer">
                 <div id="Header"><img src="Images\icons\network.png" id="headerIcon"><center>NETWORK</center></div>

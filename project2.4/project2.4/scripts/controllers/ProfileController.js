@@ -4,7 +4,6 @@ angular.module('Profile')
         var url = UriBuilder.BuildUrl("Account", { 'id': null });
         httpRequestService.getRequest(url, function success(response) {
             $scope.Account = response.data;
-            //$scope.checkVideo();
         }, function fail(response) {
             console.log("Ging iets fout bij het ophalen van het account");
         });
@@ -34,7 +33,7 @@ angular.module('Profile')
                 }
                 if (noVideo == $scope.Feed.length) {
                     console.log("doet wel iets");
-                    $scope.noMediaVideo = true;
+                    $scope.noMediaVideo = true; //Waarom doet deze het niet?
                 }
             }
             
@@ -58,7 +57,6 @@ angular.module('Profile')
         var url = UriBuilder.BuildUrl("ProfileInfo", { 'id': profileId });
         httpRequestService.getRequest(url, function success(response) {
             $scope.ProfileInfo = response.data;
-            //$scope.checkVideo();
             var url = UriBuilder.BuildUrl("Feed", { 'id': profileId });
             httpRequestService.getRequest(url, function success(response) {
                 $scope.Feed = response.data;
@@ -72,7 +70,7 @@ angular.module('Profile')
             });
 
 
-        //Friend Requests
+        //Friend Requests ophalen
         var url = UriBuilder.BuildUrl("FriendRequest");
         httpRequestService.getRequest(url, function success(response) {
             $scope.friendRequests = response.data;
@@ -81,7 +79,30 @@ angular.module('Profile')
             console.log("Ging iets fout bij het ophalen van het Profile");
             });
 
-        
+        //Friend request versturen
+        $scope.addFriend = function (FriendUserId) {
+            console.log("id " + FriendUserId);
+            var url = UriBuilder.BuildUrl("FriendRequest", { 'FriendUserId': FriendUserId });
+            httpRequestService.PostRequest(url, null, function success(response) {
+                console.log("Friend Requests send");
+            }, function fail(response) {
+                console.log("not Send");
+            });
+        }
+
+        //Handle requests
+        $scope.checkRequest = function (FriendUserId, accepted) {
+            var url = UriBuilder.BuildUrl("FriendRequest", { 'FriendUserId': FriendUserId, 'Accepted': accepted });
+            console.log(url);
+            httpRequestService.PutRequest(url, null, function succes(response) {
+                console.log("Request handled");
+            }, function fail(response) {
+                    console.log("Failed");
+            });
+        }
+
+        //Get Friends
+
 
         //Redirects
         $scope.profilePosts = true;
