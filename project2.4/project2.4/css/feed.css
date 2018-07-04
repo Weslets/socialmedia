@@ -162,6 +162,12 @@
     height: 300px;
 }
 
+.postedMedia {
+    margin-top:2%;
+    margin-right: 37%;
+    height:300px;
+}
+
 .postcontainer, .postcontainer-feed, .postcontainer-profile {
     animation: fadeinPost 1s;
     transition: 0.2s;
@@ -178,6 +184,7 @@
     border-style: solid;
 }
 
+
 .postcontainer-feed {
     left: 6%;
     right: 0;
@@ -187,7 +194,7 @@
     min-width: 600px;
 }
 
-.postcontainer-profile, .postcontainer-friendsProfile {
+.postcontainer-profile, .postcontainer-friendsProfile, .postcontainer-photo {
     left: 0;
     right: 0;
     margin: auto;
@@ -195,6 +202,19 @@
     width: 40%;
     min-width: 600px;
     margin-bottom: 30px;
+}
+
+.postcontainer-photo {
+    animation: fadeinPost 1s;
+    transition: 0.2s;
+    position: relative;
+    margin-bottom: 1%;
+    background-color: #d7dde5;
+    padding-bottom: 10px;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: #999aa3;
+    border-style: solid;
 }
 
 

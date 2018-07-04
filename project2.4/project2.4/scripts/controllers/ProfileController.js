@@ -4,6 +4,7 @@ angular.module('Profile')
         var url = UriBuilder.BuildUrl("Account", { 'id': null });
         httpRequestService.getRequest(url, function success(response) {
             $scope.Account = response.data;
+            //$scope.checkVideo();
         }, function fail(response) {
             console.log("Ging iets fout bij het ophalen van het account");
         });
@@ -21,13 +22,48 @@ angular.module('Profile')
         if (profileId != userId) {
             $scope.isOther = true;
         }
+
+        $scope.checkVideo = function () {
+            var noVideo = 0;
+            for (i = 0; i < $scope.Feed.length; i++) {
+                if ($scope.Feed[i].Feed.VideoUrl == undefined) {
+                    $scope.Feed[i].isvideo = false;
+                    noVideo++;
+                } else {
+                    $scope.Feed[i].isvideo = true;
+                }
+                if (noVideo == $scope.Feed.length) {
+                    console.log("doet wel iets");
+                    $scope.noMediaVideo = true;
+                }
+            }
+            
+        }
+
+        $scope.checkPhoto = function () {
+            var noPhoto = 0;
+            for (i = 0; i < $scope.Feed.length; i++) {
+                if ($scope.Feed[i].Feed.ImageUrl == undefined) {
+                    $scope.Feed[i].isImage = false;
+                    noPhoto++;
+                } else {
+                    $scope.Feed[i].isImage = true;
+                }
+                if (noPhoto == $scope.Feed.length) {
+                    $scope.noMediaPhoto = true;
+                }
+            }
+        }
         
         var url = UriBuilder.BuildUrl("ProfileInfo", { 'id': profileId });
         httpRequestService.getRequest(url, function success(response) {
             $scope.ProfileInfo = response.data;
+            //$scope.checkVideo();
             var url = UriBuilder.BuildUrl("Feed", { 'id': profileId });
             httpRequestService.getRequest(url, function success(response) {
                 $scope.Feed = response.data;
+                $scope.checkVideo();
+                $scope.checkPhoto();
             }, function fail(response) {
                 console.log("Ging iets fout bij het ophalen van de Feed");
             });
@@ -52,6 +88,8 @@ angular.module('Profile')
         $scope.profilePhotos = false;
         $scope.profileNotes = false;
         $scope.profileAbout = false;
+        //$scope.noMedia = true;
+        
 
         $scope.redirectFeed = function (e) {
             $location.path("/Feed");
